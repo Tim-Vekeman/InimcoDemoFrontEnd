@@ -1,7 +1,10 @@
+// Angular imports
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonFormComponent } from './components/person-form/person-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// component imports
+import { PersonFormComponent } from './components/person-form/person-form.component';
 
 
 @NgModule({
@@ -9,7 +12,9 @@ import { PersonFormComponent } from './components/person-form/person-form.compon
     PersonFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PersonModule { }
