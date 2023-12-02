@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 // import internal modules
 import { Person } from '../models/person.model';
+import { ExtendedPerson } from '../models/extended-person.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,10 @@ export class PersonService {
 
   postPerson(person: Person): Observable<Person> {
     return this.http.post<Person>(this.apiUrl, person);
+  }
+
+  //extended person
+  getExtendedPerson(id: number): Observable<ExtendedPerson> {
+    return this.http.get<ExtendedPerson>(this.apiUrl + "/persons/extended" + id);
   }
 }
