@@ -44,12 +44,13 @@
           >
             Add social skill
           </button>
-          <div
-            class="input-group mb-3"
-            *ngFor="let skill of socialSkills.controls; let i = index"
-          >
-            <div class="input-group" [formGroupName]="i">
-              <input class="form-control" type="text" formControlName="skill" />
+          <div *ngFor="let skillControl of socialSkillsArray; let i = index">
+            <div class="input-group mb-3">
+              <input
+                class="form-control"
+                type="text"
+                [formControl]="skillControl"
+              />
               <button
                 class="btn btn-sm btn-danger mx-1 btn-outline-secondary"
                 type="button"
@@ -61,7 +62,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>      
 
       <div class="row mb-3">
         <div class="col" formArrayName="socialMediaAccounts">

@@ -1,6 +1,6 @@
 // angular imports
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, FormControl, Form } from '@angular/forms';
 import { Router } from '@angular/router';
 
 // app imports
@@ -34,6 +34,10 @@ export class PersonFormComponent {
         [Validators.required, Validators.minLength(1), Validators.maxLength(50)]
       ),
     });
+
+    //create initial input fields
+    this.addSocialSkill();
+    this.addSocialMediaAccount();
   }
   
 
@@ -53,19 +57,18 @@ export class PersonFormComponent {
 
   //* Assistant functions
   // social skill help functions
+  get socialSkillsArray(): FormControl[] {
+    return this.socialSkills.controls.map(control => control as FormControl);
+  }
+
   get socialSkills() {
     return this.personForm.get('socialSkills') as FormArray;
   }
 
   addSocialSkill() {
-    this.socialSkills.push(
-      this.formBuilder.group({
-        skill: ['', Validators.required],
-      })
-    );
+    this.socialSkills.push(new FormControl(''));
   }
   
-
   removeSocialSkill(index: number) {
     this.socialSkills.removeAt(index);
   }
