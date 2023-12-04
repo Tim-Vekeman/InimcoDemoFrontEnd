@@ -20,28 +20,17 @@ export class PersonFormComponent {
     this.personForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      //TODO: add validation for the social skills array (min 1, max 50) [the validation always says invalid]
-      //TODO: also see "addSocialSkill" and html-code
       socialSkills: this.formBuilder.array(
         [],
-        [
-          // Validators.required,
-          // Validators.minLength(1),
-          // Validators.maxLength(50)
-        ]
+        [Validators.required, Validators.minLength(1), Validators.maxLength(50)]
       ),
-      //TODO: add validation for the socialMediaAccounts array (min 1, max 50) [the validation always says invalid]
-      //TODO: also see "addSocialSkill" and html-code
       socialMediaAccounts: this.formBuilder.array(
         [],
-        [
-          // Validators.required,
-          // Validators.minLength(1),
-          // Validators.maxLength(50)
-        ]
+        [Validators.required, Validators.minLength(1), Validators.maxLength(50)]
       ),
     });
   }
+  
 
   onSubmit() {
     if (this.personForm.valid) {
@@ -68,9 +57,12 @@ export class PersonFormComponent {
 
   addSocialSkill() {
     this.socialSkills.push(
-      this.formBuilder.control('' /*Validators.required*/)
+      this.formBuilder.group({
+        skill: ['', Validators.required],
+      })
     );
   }
+  
 
   removeSocialSkill(index: number) {
     this.socialSkills.removeAt(index);
@@ -84,8 +76,8 @@ export class PersonFormComponent {
   addSocialMediaAccount() {
     this.socialMediaAccounts.push(
       this.formBuilder.group({
-        type: ['' /*Validators.required*/],
-        address: ['' /*Validators.required*/],
+        type: ['', Validators.required],
+        address: ['', Validators.required],
       })
     );
   }

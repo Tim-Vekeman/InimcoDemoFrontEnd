@@ -1,4 +1,4 @@
-<div class="card mt-2" style="width: 100rem">
+<div class="card mt-2" style="width: 90vw">
   <div class="card-body">
     <h3 class="mt-5 mb-3 card-title">Enter a person</h3>
 
@@ -39,6 +39,7 @@
           <button
             class="btn btn-sm btn-success mx-1"
             type="button"
+            [disabled]="socialSkills.length >= 50"
             (click)="addSocialSkill()"
           >
             Add social skill
@@ -47,12 +48,8 @@
             class="input-group mb-3"
             *ngFor="let skill of socialSkills.controls; let i = index"
           >
-            <div class="input-group">
-              <input
-                class="form-control"
-                type="text"
-                formControlName="socialSkills"
-              />
+            <div class="input-group" [formGroupName]="i">
+              <input class="form-control" type="text" formControlName="skill" />
               <button
                 class="btn btn-sm btn-danger mx-1 btn-outline-secondary"
                 type="button"
@@ -62,9 +59,6 @@
                 Remove social skill
               </button>
             </div>
-            <!-- <small class="text-danger" *ngIf="personForm.get('socialSkills')?.invalid">
-                    Social skill is required.
-                </small> -->
           </div>
         </div>
       </div>
@@ -83,7 +77,7 @@
             class="input-group mb-3"
             *ngFor="let account of socialMediaAccounts.controls; let i = index"
           >
-            <div class="input-group">
+            <div class="input-group" [formGroupName]="i">
               <input
                 class="form-control"
                 type="text"
@@ -97,7 +91,7 @@
                 placeholder="Address"
               />
               <button
-                class="btn btn-sm btn-danger mx-1 btn-outline-secondary "
+                class="btn btn-sm btn-danger mx-1 btn-outline-secondary"
                 type="button"
                 [disabled]="socialMediaAccounts.length <= 1"
                 (click)="removeSocialMediaAccount(i)"
@@ -105,12 +99,10 @@
                 Remove Account
               </button>
             </div>
-            <!--<small class="text-danger" *ngIf="socialMediaAccounts.invalid && socialMediaAccounts.touched">
-                Please fill in all social media accounts.
-            </small>-->
           </div>
         </div>
       </div>
+
       <div class="d-grid gap-2">
         <button
           class="btn btn-primary"
