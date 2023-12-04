@@ -1,38 +1,125 @@
-<h3 class="mt-5 mb-3">Enter a person</h3>
+<div class="card mt-2" style="width: 100rem">
+  <div class="card-body">
+    <h3 class="mt-5 mb-3 card-title">Enter a person</h3>
 
-<form [formGroup]="personForm" (ngSubmit)="onSubmit()">
-    <div class="row mb-3">
+    <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+      <div class="row mb-3">
         <div class="col">
-            <label class="form-label">Firstname:</label>
-            <input class="form-control" type="text" formControlName="firstname">
-            <small class="text-danger" *ngIf="personForm.get('firstname')?.invalid && personForm.get('firstname')?.touched">
-                Firstname is required.
-            </small>
+          <label class="form-label">Firstname:</label>
+          <input class="form-control" type="text" formControlName="firstname" />
+          <small
+            class="text-danger"
+            *ngIf="
+              personForm.get('firstname')?.invalid &&
+              personForm.get('firstname')?.touched
+            "
+          >
+            Firstname is required.
+          </small>
         </div>
 
         <div class="col">
-            <label class="form-label">Lastname:</label>
-            <input class="form-control" type="text" formControlName="lastname">
-            <small class="text-danger" *ngIf="personForm.get('lastname')?.invalid && personForm.get('lastname')?.touched">
-                Lastname is required.
-            </small>
+          <label class="form-label">Lastname:</label>
+          <input class="form-control" type="text" formControlName="lastname" />
+          <small
+            class="text-danger"
+            *ngIf="
+              personForm.get('lastname')?.invalid &&
+              personForm.get('lastname')?.touched
+            "
+          >
+            Lastname is required.
+          </small>
         </div>
-    </div>
+      </div>
 
-    <div class="row mb-3">
+      <div class="row mb-3">
         <div class="col" formArrayName="socialSkills">
-            <label class="form-label">Social skills:</label>
-            <button class="btn btn-sm btn-success mx-1" type="button" (click)="addSocialSkill()">Add social skill</button>
-            <div class="input-group mb-3" *ngFor="let skill of socialSkills.controls; let i = index">
-                <input class="form-control" type="text" formControlName="socialSkills" />
-                <button class="btn btn-sm btn-danger mx-1 btn-outline-secondary" type="button" [disabled]="socialSkills.length <= 1" (click)="removeSocialSkill(i)">Remove social skill</button>
-                <!-- <small class="text-danger" *ngIf="personForm.get('socialSkills')?.invalid">
+          <label class="form-label">Social skills:</label>
+          <button
+            class="btn btn-sm btn-success mx-1"
+            type="button"
+            (click)="addSocialSkill()"
+          >
+            Add social skill
+          </button>
+          <div
+            class="input-group mb-3"
+            *ngFor="let skill of socialSkills.controls; let i = index"
+          >
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="text"
+                formControlName="socialSkills"
+              />
+              <button
+                class="btn btn-sm btn-danger mx-1 btn-outline-secondary"
+                type="button"
+                [disabled]="socialSkills.length <= 1"
+                (click)="removeSocialSkill(i)"
+              >
+                Remove social skill
+              </button>
+            </div>
+            <!-- <small class="text-danger" *ngIf="personForm.get('socialSkills')?.invalid">
                     Social skill is required.
                 </small> -->
-            </div>
+          </div>
         </div>
-    </div>
-    
+      </div>
 
-    <button class="btn btn-primary" type="submit" [disabled]="personForm.invalid">Submit</button>
-</form>
+      <div class="row mb-3">
+        <div class="col" formArrayName="socialMediaAccounts">
+          <label class="form-label">Social Media Accounts:</label>
+          <button
+            class="btn btn-sm btn-success mx-1"
+            type="button"
+            (click)="addSocialMediaAccount()"
+          >
+            Add Social Media Account
+          </button>
+          <div
+            class="input-group mb-3"
+            *ngFor="let account of socialMediaAccounts.controls; let i = index"
+          >
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="text"
+                formControlName="type"
+                placeholder="Type"
+              />
+              <input
+                class="form-control"
+                type="text"
+                formControlName="address"
+                placeholder="Address"
+              />
+              <button
+                class="btn btn-sm btn-danger mx-1 btn-outline-secondary "
+                type="button"
+                [disabled]="socialMediaAccounts.length <= 1"
+                (click)="removeSocialMediaAccount(i)"
+              >
+                Remove Account
+              </button>
+            </div>
+            <!--<small class="text-danger" *ngIf="socialMediaAccounts.invalid && socialMediaAccounts.touched">
+                Please fill in all social media accounts.
+            </small>-->
+          </div>
+        </div>
+      </div>
+      <div class="d-grid gap-2">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="personForm.invalid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
