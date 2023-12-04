@@ -9,7 +9,7 @@ import { PersonViewComponent } from './person/components/person-view/person-view
 const routes: Routes = [
   {path: '', redirectTo: '/new', pathMatch: 'full'},
   {path: 'new', component: PersonFormComponent},
-  {path: 'view/:id', component: PersonFormComponent}
+  {path: 'view/:id', component: PersonViewComponent}
 ];
 
 @NgModule({
