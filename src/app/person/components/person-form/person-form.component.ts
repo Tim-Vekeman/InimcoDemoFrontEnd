@@ -1,5 +1,9 @@
+// angular imports
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+// app imports
 import { Person } from '../../../models/person/person';
 import { PersonService } from '../../services/person.service';
 
@@ -13,7 +17,8 @@ export class PersonFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private personService: PersonService
+    private personService: PersonService,
+    private router: Router
   ) {}
   //* Main functions
   ngOnInit(): void {
@@ -38,9 +43,7 @@ export class PersonFormComponent {
       console.log(person);
       this.personService.postPerson(person).subscribe(
         (person: Person) => {
-          //TODO add naviagtion to overview page
-          //this.router.navigate(['/view']);
-          alert('Person was saved successfully.');
+          this.router.navigate(['/view/' + person.id]);
         },
         (_) => {
           alert('There was an error while saving the person.');
