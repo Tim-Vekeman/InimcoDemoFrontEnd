@@ -1,4 +1,4 @@
-import { SocialMediaAccount } from "../social-media-account/social-media-account"
+import { SocialMediaAccount } from "../socialMediaAccount/social-media-account";
 
 export interface Person {
     id : number
@@ -7,4 +7,3 @@ export interface Person {
     social_skills : string[]
     social_media_accounts : SocialMediaAccount[]
 }
-
