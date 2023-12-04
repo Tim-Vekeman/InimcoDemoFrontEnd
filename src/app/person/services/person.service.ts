@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // import internal modules
-import { Person } from '../models/person.model';
-import { ExtendedPerson } from '../models/extended-person.model';
+import { Person } from '../../models/person/person';
+import { PersonExtended } from '../../models/personExtended/person-extended';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class PersonService {
   }
 
   //extended person
-  getExtendedPerson(id: number): Observable<ExtendedPerson> | undefined {
-    return this.http.get<ExtendedPerson>(this.apiUrl + "/persons/extended" + id);
+  getExtendedPerson(id: number): Observable<PersonExtended> | undefined {
+    return this.http.get<PersonExtended>(this.apiUrl + "/persons/extended" + id);
   }
 }
