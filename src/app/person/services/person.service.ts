@@ -21,7 +21,7 @@ export class PersonService {
   }
 
   //extended person
-  getExtendedPerson(id: number): Observable<ExtendedPerson> {
+  getExtendedPerson(id: number): Observable<ExtendedPerson> | undefined {
     return this.http.get<ExtendedPerson>(this.apiUrl + "/persons/extended" + id);
   }
 }
