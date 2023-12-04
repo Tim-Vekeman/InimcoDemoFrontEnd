@@ -40,7 +40,6 @@ export class PersonFormComponent {
   onSubmit() {
     if (this.personForm.valid) {
       const person: Person = this.personForm.value;
-      console.log(person);
       this.personService.postPerson(person).subscribe(
         (person: Person) => {
           this.router.navigate(['/view/' + person.id]);
