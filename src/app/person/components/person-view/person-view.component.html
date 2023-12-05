@@ -1,16 +1,22 @@
-<div>
-    <h1>Person View</h1>
-    <div>
+<div class="card mt-2" style="width: 90vw">
+    <div class="card-body">
+      <h3 class="mt-5 mb-3 card-title">Person View</h3>
+  
+      <div class="well">
         <p>Number of vowels: {{person?.vowels}}</p>
         <p>Number of constenants: {{person?.constenants}}</p>
         <p>The firstname + last name entered: {{person?.fullname}}</p>
         <p>The reverse version of the firstname and lastname: {{person?.reversedFullname}}</p>
-    </div>
-    <div>
+      </div>
+  
+      <div class="well">
         <p>The JSON format of the entire object:</p>
         <code>
-            <pre class="custom-pre">{{ person?.personAsJson }}</pre>
+          <pre class="custom-pre">{{ person?.personAsJson }}</pre>
         </code>
+      </div>
+  
+      <button class="btn btn-sm btn-primary" type="button" (click)="goBack()">Go back</button>
     </div>
-    <button class="btn btn-sm btn-primary mx-1" type="button" (click)="goBack()">Go back</button>
-</div>
+  </div>
+  

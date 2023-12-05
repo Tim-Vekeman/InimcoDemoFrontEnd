@@ -56,6 +56,7 @@
                 type="button"
                 [disabled]="socialSkills.length <= 1"
                 (click)="removeSocialSkill(i)"
+                [style.color]="socialSkills.length > 1 ? '#fff' : ''"
               >
                 Remove social skill
               </button>
@@ -96,6 +97,7 @@
                 type="button"
                 [disabled]="socialMediaAccounts.length <= 1"
                 (click)="removeSocialMediaAccount(i)"
+                [style.color]="socialMediaAccounts.length > 1 ? '#fff' : ''"
               >
                 Remove Account
               </button>
