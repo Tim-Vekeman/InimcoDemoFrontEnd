@@ -4,11 +4,13 @@
         <p>Number of vowels: {{person?.vowels}}</p>
         <p>Number of constenants: {{person?.constenants}}</p>
         <p>The firstname + last name entered: {{person?.fullname}}</p>
-        <p>The reverse version of the firstname and lastname: {{person?.reversed_fullname}}</p>
+        <p>The reverse version of the firstname and lastname: {{person?.reversedFullname}}</p>
     </div>
     <div>
         <p>The JSON format of the entire object:</p>
-        <pre>{{person?.person_as_json| json}}</pre>
+        <code>
+            <pre class="custom-pre">{{ person?.personAsJson }}</pre>
+        </code>
     </div>
     <button class="btn btn-sm btn-primary mx-1" type="button" (click)="goBack()">Go back</button>
 </div>
