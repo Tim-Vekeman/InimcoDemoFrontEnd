@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { PersonFormComponent } from './person-form.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PersonFormComponent', () => {
   let component: PersonFormComponent;
@@ -8,10 +9,10 @@ describe('PersonFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PersonFormComponent]
-    })
-    .compileComponents();
-    
+      declarations: [PersonFormComponent],
+      imports: [ReactiveFormsModule, HttpClientTestingModule],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(PersonFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

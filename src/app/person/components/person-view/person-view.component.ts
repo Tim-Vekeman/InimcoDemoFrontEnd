@@ -1,5 +1,5 @@
 // Angular imports
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 // app imports
@@ -11,9 +11,9 @@ import { Person } from '../../../models/person/person';
   selector: 'app-person-view',
   providers: [PersonService],
   templateUrl: './person-view.component.html',
-  styleUrl: './person-view.component.css',
+  styleUrls: ['./person-view.component.css'],
 })
-export class PersonViewComponent {
+export class PersonViewComponent implements OnInit {
   person: PersonExtended | undefined;
 
   constructor(
@@ -25,32 +25,32 @@ export class PersonViewComponent {
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
 
-    if (id === null) {
+    if (!id) {
       alert('Something went wrong');
       this.router.navigate(['/new']);
       return;
     }
-    this.personService.getExtendedPerson(parseInt(id))?.subscribe(
+
+    this.personService.getExtendedPerson(parseInt(id, 10))?.subscribe(
       (person: PersonExtended) => {
         this.person = person;
-
-        // sort the arrays
-        this.person.socialSkills.sort((a, b) => a.localeCompare(b));
-        this.person.socialMediaAccounts.sort((a, b) => a.type.localeCompare(b.type));
-
+        
         // prettify the json
-        this.person.personAsJson = person.personAsJson as Person;
+        try {
+          person.personAsJson = person?.personAsJson as Person;
+        } catch (error) {
+          alert('There was an error while retrieving the person.');
+          this.router.navigate(['/new']);
+        }
       },
       (_) => {
         alert('There was an error while retrieving the person.');
         this.router.navigate(['/new']);
-        return;
       }
     );
   }
 
   goBack() {
     this.router.navigate(['/new']);
-    return;
   }
 }
