@@ -5,5 +5,5 @@ export interface PersonExtended extends Person{
     constenants : number;
     fullname : string;
     reversedFullname : string;
-    personAsJson : string;
+    personAsJson : Person;
 }

@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 // app imports
 import { PersonExtended } from '../../../models/personExtended/person-extended';
 import { PersonService } from '../../services/person.service';
+import { Person } from '../../../models/person/person';
 
 @Component({
   selector: 'app-person-view',
@@ -38,7 +39,7 @@ export class PersonViewComponent {
         this.person.socialMediaAccounts.sort((a, b) => a.type.localeCompare(b.type));
 
         // prettify the json
-        this.person.personAsJson = JSON.parse(JSON.stringify(this.person.personAsJson, null,'\t'));
+        this.person.personAsJson = person.personAsJson as Person;
       },
       (_) => {
         alert('There was an error while retrieving the person.');
